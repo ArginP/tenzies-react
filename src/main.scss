@@ -127,11 +127,13 @@ main.game-container {
 
     button.roll-btn {
       height: 70px;
-      width: 186px;
+      min-width: 186px;
+      padding: 0 24px;
       font-family: "Karla", sans-serif;
       color: #fff;
       font-size: 32px;
       font-weight: bold;
+      white-space: nowrap;
       border: none;
       outline: none;
       border-radius: 8px;

@@ -16,15 +16,18 @@ export default function App() {
             }))
     }
 
-    console.log(dice)
-
     function handleRollClick() {
-        setDice(prevDice => prevDice.map( die => {
-            return die.isHeld === false ? {
-                ...die,
-                value: Math.floor(Math.random() * 6) + 1,
-            } : die;
-        }));
+        if (!gameWon) {
+            setDice(prevDice => prevDice.map( die => {
+                return die.isHeld === false ? {
+                    ...die,
+                    value: Math.floor(Math.random() * 6) + 1,
+                } : die;
+            }));
+        } else {
+            setDice(generateAllNewDice());
+        }
+
     }
 
     function hold(id) {
@@ -52,7 +55,6 @@ export default function App() {
     }
 
     let gameWon = checkIfGameWon(dice);
-    console.log(gameWon);
 
     const DieComponents = dice.map((die) => {
         return <Die
@@ -83,7 +85,7 @@ export default function App() {
 
                 <div className="button-container">
                     <button className="roll-btn" onClick={handleRollClick}>
-                        {gameWon ? "New Game" : "Roll"}
+                        {gameWon ? "Новая игра" : "Бросить"}
                     </button>
                 </div>
             </main>
