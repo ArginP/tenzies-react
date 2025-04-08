@@ -7,10 +7,7 @@ export default function App() {
 
     function generateAllNewDice() {
         return new Array(10)
-            .fill({
-                value: 0,
-                isHeld: false,
-            })
+            .fill(0)
             .map(() => ({
                 id: nanoid(),
                 value: Math.floor(Math.random() * 6) + 1,
@@ -21,14 +18,29 @@ export default function App() {
     console.log(dice)
 
     function handleRollClick() {
-        setDice(generateAllNewDice());
+        setDice(prevDice => prevDice.map( die => {
+            return die.isHeld === false ? {
+                ...die,
+                value: Math.floor(Math.random() * 6) + 1,
+            } : die;
+        }));
+    }
+
+    function hold(id) {
+        setDice(prevDice => prevDice.map( die =>
+            die.id === id ?
+                {...die, isHeld: !die.isHeld} :
+                die
+        ))
     }
 
     const DieComponents = dice.map((die) => {
         return <Die
             key={die.id}
+            id={die.id}
             value={die.value}
             isHeld={die.isHeld}
+            hold={hold}
         />
     })
 

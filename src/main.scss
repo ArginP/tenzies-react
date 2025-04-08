@@ -77,6 +77,10 @@ main.game-container {
        cursor: pointer;
        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
 
+       &.held {
+         background-color: #59e391;
+       }
+
        @media screen and (max-width: 640px) {
          font-size: 21px;
          border-radius: 4px;
