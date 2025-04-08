@@ -15,6 +15,10 @@ export default function App() {
         return allDice;
     }
 
+    function handleRollClick() {
+        setSice(generateAllNewDice());
+    }
+
     const DieComponents = dice.map((die) => {
         return <Die value={die} />
     })
@@ -22,8 +26,14 @@ export default function App() {
     return (
         <>
             <main className={"game-container"}>
+                <div className="text-container"></div>
+
                 <div className="dice-container">
                     {DieComponents}
+                </div>
+
+                <div className="button-container">
+                    <button className="roll-btn" onClick={handleRollClick}>Roll</button>
                 </div>
             </main>
         </>
