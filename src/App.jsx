@@ -1,26 +1,35 @@
 import Die from "./Die.jsx"
 import { useState } from "react";
+import { nanoid } from 'nanoid'
 
 export default function App() {
-    const [dice, setSice] = useState(generateAllNewDice());
+    const [dice, setDice] = useState(generateAllNewDice());
 
     function generateAllNewDice() {
-        const allDice = [];
-
-        for (let i = 0; i < 10; i++) {
-            const randomDie = Math.floor(Math.random() * 6) + 1;
-            allDice.push(randomDie)
-        }
-
-        return allDice;
+        return new Array(10)
+            .fill({
+                value: 0,
+                isHeld: false,
+            })
+            .map(() => ({
+                id: nanoid(),
+                value: Math.floor(Math.random() * 6) + 1,
+                isHeld: false
+            }))
     }
 
+    console.log(dice)
+
     function handleRollClick() {
-        setSice(generateAllNewDice());
+        setDice(generateAllNewDice());
     }
 
     const DieComponents = dice.map((die) => {
-        return <Die value={die} />
+        return <Die
+            key={die.id}
+            value={die.value}
+            isHeld={die.isHeld}
+        />
     })
 
     return (
