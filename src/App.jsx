@@ -47,7 +47,13 @@ export default function App() {
     return (
         <>
             <main className={"game-container"}>
-                <div className="text-container"></div>
+                <div className="text-container">
+                    <h1>Tenzies</h1>
+                    <p>
+                        Бросайте, пока все кубики не примут одинаковое значение.
+                        Щелкните по кубику, чтобы зафискировать его на текущем значении.
+                    </p>
+                </div>
 
                 <div className="dice-container">
                     {DieComponents}

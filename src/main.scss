@@ -1,13 +1,4 @@
-@use "sass:math";
-@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
-
-@function rem($pixel) {
-  @if math.is-unitless($pixel) {
-    @return math.div($pixel, 16) + rem;
-  } @else {
-    @error 'Не используйте единицы измерения при работе с функцией rem()! Передавайте аргументом только числа.'
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
 
 * {
   box-sizing: border-box;
@@ -40,6 +31,45 @@ main.game-container {
     left: calc(50% - calc($gameDimension / 4));
     height: calc($gameDimension / 1.5);
     width: calc($gameDimension / 2);
+  }
+
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 420px;
+    text-align: center;
+    margin: 0;
+
+    h1 {
+      font-size: 52px;
+      font-weight: bold;
+      color: #2b283a;
+      margin: 0;
+
+      @media screen and (max-width: 640px) {
+        font-size: 26px;
+      }
+    }
+
+    p {
+      font-family: "Inter", sans-serif;
+      font-size: 20px;
+      color: #4a4e74;
+      margin: 5px;
+
+      @media screen and (max-width: 640px) {
+        font-size: 13px;
+        color: #F5F5F5;
+        position: absolute;
+        top: - calc($gameDimension / 8);
+      }
+    }
+
+    @media screen and (max-width: 640px) {
+      width: 234px;
+    }
   }
 
  .dice-container {
