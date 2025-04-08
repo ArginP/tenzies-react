@@ -1,9 +1,10 @@
 import Die from "./Die.jsx"
 import { useState } from "react";
 import { nanoid } from 'nanoid'
+import Confetti from "./Confetti.jsx";
 
 export default function App() {
-    const [dice, setDice] = useState(generateAllNewDice());
+    const [dice, setDice] = useState(() => generateAllNewDice());
 
     function generateAllNewDice() {
         return new Array(10)
@@ -34,6 +35,25 @@ export default function App() {
         ))
     }
 
+    function checkIfGameWon(dice) {
+        // Проверяем, все ли кости удержаны
+        const allHeld = dice.every(die => die.isHeld === true);
+
+        // Проверяем, одинаковы ли значения всех костей
+        const allSameValue = dice.every(die => die.value === dice[0].value);
+
+        // Если оба условия выполнены, игра завершена
+        if (allHeld && allSameValue) {
+            console.log('Game is Won');
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    let gameWon = checkIfGameWon(dice);
+    console.log(gameWon);
+
     const DieComponents = dice.map((die) => {
         return <Die
             key={die.id}
@@ -46,6 +66,8 @@ export default function App() {
 
     return (
         <>
+            {gameWon && <Confetti/>}
+
             <main className={"game-container"}>
                 <div className="text-container">
                     <h1>Tenzies</h1>
@@ -60,7 +82,9 @@ export default function App() {
                 </div>
 
                 <div className="button-container">
-                    <button className="roll-btn" onClick={handleRollClick}>Roll</button>
+                    <button className="roll-btn" onClick={handleRollClick}>
+                        {gameWon ? "New Game" : "Roll"}
+                    </button>
                 </div>
             </main>
         </>
