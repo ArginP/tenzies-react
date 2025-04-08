@@ -1,4 +1,5 @@
 # Tenzies
+## Игра Тензи
 Practice project
 
 ## Использованные стеки технологий:
@@ -7,7 +8,11 @@ Practice project
 - SCSS
 - JavaScript
 - React 19
+- Vite, PostCSS autoprefixer, nanoid, react-confetti
 
-## Реализованный функционал:
+```
+Бросайте, пока все кубики не примут одинаковое значение.
+Щелкните по кубику, чтобы зафискировать его на текущем значении.
+```
 
-- WIP
+## [Deploy via GitHub Actions](https://arginp.github.io/tenzies-react/) 
