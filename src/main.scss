@@ -1,0 +1,88 @@
+@use "sass:math";
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+
+@function rem($pixel) {
+  @if math.is-unitless($pixel) {
+    @return math.div($pixel, 16) + rem;
+  } @else {
+    @error 'Не используйте единицы измерения при работе с функцией rem()! Передавайте аргументом только числа.'
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #0B2434;
+  font-family: "Karla", sans-serif;
+}
+
+main.game-container {
+  $gameDimension: 640px;
+
+  position: absolute;
+  top: calc(50% - calc($gameDimension / 2));
+  left: calc(50% - calc($gameDimension / 2));
+  height: $gameDimension;
+  width: $gameDimension;
+  background: #F5F5F5;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 640px) {
+    top: calc(50% - calc($gameDimension / 4));
+    left: calc(50% - calc($gameDimension / 4));
+    height: calc($gameDimension / 1.5);
+    width: calc($gameDimension / 2);
+  }
+
+ .dice-container {
+   display: grid;
+   grid-template-columns: repeat(5, 1fr);
+   gap: 36px;
+
+   @media screen and (max-width: 640px) {
+     grid-template-columns: repeat(2, 1fr);
+     gap: 18px;
+   }
+
+   .die {
+     $dieDimension: 72px;
+
+     height: $dieDimension;
+     width: $dieDimension;
+
+     @media screen and (max-width: 640px) {
+       height: calc($dieDimension / 1.5);
+       width: calc($dieDimension / 1.5);
+     }
+
+     button {
+       height: 100%;
+       width: 100%;
+       font-family: "Karla", sans-serif;
+       color: #2b283a;
+       font-size: 42px;
+       font-weight: bold;
+       border: none;
+       outline: none;
+       border-radius: 8px;
+       background: #fff;
+       cursor: pointer;
+       box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
+
+       @media screen and (max-width: 640px) {
+         font-size: 21px;
+         border-radius: 4px;
+         box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+       }
+     }
+   }
+ }
+}
