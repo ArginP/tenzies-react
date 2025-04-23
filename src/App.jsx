@@ -1,10 +1,12 @@
 import Die from "./Die.jsx"
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { nanoid } from 'nanoid'
 import Confetti from "./Confetti.jsx";
 
 export default function App() {
     const [dice, setDice] = useState(() => generateAllNewDice());
+
+    const newGameBtn = useRef(null)
 
     function generateAllNewDice() {
         return new Array(10)
@@ -66,6 +68,12 @@ export default function App() {
         />
     })
 
+    useEffect(() => {
+        if(gameWon) {
+            newGameBtn.current.focus()
+        }
+    }, [gameWon])
+
     return (
         <>
             {gameWon && <Confetti/>}
@@ -88,7 +96,7 @@ export default function App() {
                 </div>
 
                 <div className="button-container">
-                    <button className="roll-btn" onClick={handleRollClick}>
+                    <button className="roll-btn" onClick={handleRollClick} ref={newGameBtn}>
                         {gameWon ? "Новая игра" : "Бросить"}
                     </button>
                 </div>
