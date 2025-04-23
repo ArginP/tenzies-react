@@ -70,6 +70,10 @@ export default function App() {
         <>
             {gameWon && <Confetti/>}
 
+            <div aria-live="polite" className="visually-hidden">
+                {gameWon && <p>Ура! Победа! Нажмите "Новая игра" чтобы начать сначала.</p>}
+            </div>
+
             <main className={"game-container"}>
                 <div className="text-container">
                     <h1>Tenzies</h1>
