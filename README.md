@@ -4,10 +4,9 @@ Practice project
 
 ## Использованные стеки технологий:
 
-- HTML
-- SCSS
-- JavaScript
 - React 19
+- JavaScript
+- SCSS
 - Vite, PostCSS autoprefixer, nanoid, react-confetti
 
 ```
